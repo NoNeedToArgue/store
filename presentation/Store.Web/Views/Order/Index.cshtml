@@ -1,0 +1,43 @@
+﻿@model OrderModel
+
+@{
+    ViewData["Title"] = "Корзина";
+}
+
+<h1>Корзина</h1>
+
+<table class="table table-sm table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Название</th>
+            <th scope="col">Количество</th>
+            <th scope="col">Цена</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (var i = 0; i < Model.Items.Length; i++)
+        {
+            <tr>
+                <td class="text-right">@(i + 1)</td>
+                <td>@Model.Items[i].ProductName</td>
+                <td>@Model.Items[i].Count</td>
+                <td>@Model.Items[i].Price</td>
+                <td>
+                    <form action="@Url.Action("RemoveItem", "Order")" method="post">
+                        <input type="hidden" name="id" value="@Model.Items[i].ProductId" />
+                        <button class="btn btn-success" type="submit">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="2" class="text-right">Итого</td>
+            <td>@Model.TotalCount</td>
+            <td>@Model.TotalPrice</td>
+        </tr>
+    </tfoot>
+</table>

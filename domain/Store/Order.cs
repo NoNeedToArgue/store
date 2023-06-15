@@ -45,5 +45,21 @@
                 _items.Add(new OrderItem(product.Id, item.Count + count, product.Price));
             }    
         }
+
+        public void RemoveItem(Product product, int count)
+        {
+            if (product == null) throw new ArgumentNullException(nameof(product));
+
+            var item = _items.SingleOrDefault(i => i.ProductId == product.Id);
+
+            if (item == null)
+            {
+                return;
+            }
+            else
+            {
+                _items.Remove(item);
+            }
+        }
     }
 }

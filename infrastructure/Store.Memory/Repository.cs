@@ -16,6 +16,15 @@
             new Product(10, "Али Хейзелвуд: Гипотеза любви", "", 1000m),
         };
 
+        public Product[] GetAllByIds(IEnumerable<int> productIds)
+        {
+            var foundProducts = from product in products
+                                join productId in productIds on product.Id equals productId
+                                select product;
+
+            return foundProducts.ToArray();
+        }
+
         public Product[] GetAllByName(string name)
         {
             if (name == null) return null;
