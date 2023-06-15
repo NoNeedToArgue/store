@@ -1,0 +1,14 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = "Arctic Mondays";
+}
+
+<h1>@Model.Name</h1>
+<p>@Model.Description</p>
+<p>Цена: <strong>@Model.Price</strong></p>
+<form action="@Url.Action("Add", "Cart")" method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <button class="btn btn-outline-success" type="submit">В корзину</button>
+</form>
+

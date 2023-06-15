@@ -1,0 +1,21 @@
+﻿@model Product[]
+
+@{
+    ViewData["Title"] = "Arctic Mondays";
+}
+
+<h1>Arctic Mondays</h1>
+
+@if (Model == null || Model.Length == 0)
+{
+    <p>Ничего не найдено</p>
+}
+else
+{
+    <ul>
+        @foreach (Product product in Model)
+        {
+            <li><a href="@Url.Action("Index", "Product", new { id = product.Id})">@product.Name</a></li>
+        }
+    </ul>
+}
